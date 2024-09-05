@@ -1,0 +1,5 @@
+C18O_l_comp_model.cube.fits
+C18O_d_comp_model.cube.fits
+V_decomp/C18O/C18O.blue_shifted_outflows_integrated.10_chan.fits
+V_decomp/C18O/C18O.red_shifted_outflows_integrated.10_chan.fits
+*.fits

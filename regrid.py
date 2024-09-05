@@ -53,6 +53,9 @@ r = obs_regiontp.as_imagecoord(submom018.header)
 # Convolving new obs to SMT beam
 subcube_18 = subcube_18.convolve_to(subcube_tp.beam)
 
+# Reproject coordinates
+subcube_18 = subcube_18.reproject(subcube_tp.header)
+
 # Creating new integrated intensity after convolving (and also SMT again?)
 submom0tp = subcube_tp.moment0()
 submom018 = subcube_18.moment0()

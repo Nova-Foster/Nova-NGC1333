@@ -111,9 +111,11 @@ def gaussian_to_max(current_slice,current_residuals,rms):
         # print(f"Ra index: {ra}, Dec index: {dec} is all Nans. Skipping...")
         return (current_residuals, nan_like_slice, np.nan, np.nan)
 
-    if channel_max <= 10:
+    '''if channel_max <= 10:
         # print(f"Max before channel 10: Ra = {ra}, Dec = {dec} - Thread {index}")
-        return (current_residuals, nan_like_slice, np.nan, np.nan)
+        return (current_residuals, nan_like_slice, np.nan, np.nan)'''
+    
+    
     # Fit gaussian to channel
     try:
         velocity_current_cont = velocity_cont[channel_max - channel_tol : channel_max + channel_tol]
@@ -178,7 +180,7 @@ def process_chunk(payload):
             fit_params_current = []
             fit_errors_current = []
             fit_worked = True
-            prev_velocity=0
+            prev_velocity=999
 
             # Get values for current RA and DEC combination
             fitting_slice = data_local[:, dec, ra]
@@ -229,7 +231,7 @@ def process_chunk(payload):
     print(f"Thread {index} finished :)")
 
     
-    #np.save(f"output/residuals_chunk_{index}", residuals_local,allow_pickle=True)
+    np.save(f"output/residuals_chunk_{index}", residuals_local,allow_pickle=True)
     np.save(f"output/model_chunk_{index}", model_local, allow_pickle=True)
     np.save(f"output/fitparams_chunk_{index}", fit_params_local,allow_pickle=True)
     np.save(f"output/fiterrors_chunk_{index}", fit_errors_local,allow_pickle=True)
